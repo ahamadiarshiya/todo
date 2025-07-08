@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  text-align: center;
+}
+h1 {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  height: 100px;
+}
+.im {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  gap: 80px;
+}
+.im img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: solid 5px transparent;
+}
+.im img:hover {
+  border-color: black;
+}
+.head {
+  display: flex;
+  gap: 250px;
+  justify-content: center;
+  padding-top: 20px;
+}
+.score {
+  display: flex;
+  gap: 150px;
+  justify-content: center;
+}
+.message {
+  background-color: black;
+  color: white;
+  margin-top: 30px;
+  font-size: 30px;
+  display: inline-block;
+  border-radius: 30px;
+  padding: 15px;
+}
