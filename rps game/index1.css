@@ -48,3 +48,21 @@ h1 {
   border-radius: 30px;
   padding: 15px;
 }
+.restart-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#restart {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#restart:hover {
+  background-color: #666;
+}

@@ -20,6 +20,7 @@ const playgame=(userchoice)=>{
         console.log("It is a draw");
         message1.innerText="DRAW. PLAY AGAIN";
         message1.style.backgroundColor="black";
+        
     }
     else{
         let userWin = true;
@@ -56,4 +57,15 @@ choices.forEach((choice)=>{
         playgame(userchoice);
     });
 });
+
+const restartBtn = document.getElementById("restart");
+restartBtn.addEventListener("click", () => {
+    user = 0;
+    comp = 0;
+    userscore.innerText = user;
+    compscore.innerText = comp;
+    message1.innerText = "Play your move";
+    message1.style.backgroundColor = "black";
+});
+
 
