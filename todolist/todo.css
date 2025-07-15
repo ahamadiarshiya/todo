@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #222;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.hero {
+  background: #eee;
+  color: #000;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.container input {
+  flex: 1;
+  padding: 8px;
+}
+
+#taskList .task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  color: #000;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.task-text {
+  flex: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.completed .task-text {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task button {
+  margin-left: 5px;
+  cursor: pointer;
+}
