@@ -28,15 +28,14 @@ function addtask() {
   taskdiv.appendChild(deletebtn);
   document.getElementById("tasklist").appendChild(taskdiv);
   input.value = "";
-  let arr=JSON.parse(localStorage.getItem("tasklist"))||[];
-  let newarr={
-    Taskname:tasktext.textContent
+  let arr = JSON.parse(localStorage.getItem("tasklist")) || [];
+  let newarr = {
+    Taskname: tasktext.textContent,
   };
   arr.push(newarr);
-  localStorage.setItem("tasklist",JSON.stringify(arr));
+  localStorage.setItem("tasklist", JSON.stringify(arr));
 
-
-
+  //
   // const saved=document.getElementById('dele');
   // deletebtn.onclick=()=>{
   // const data = localStorage.getItem('tasklist');
@@ -50,25 +49,10 @@ function addtask() {
   //   }
   // }
 
-
-
-    document.getElementById("delete1").addEventListener("click", function() {
-      localStorage.clear();
-      const divs = document.querySelectorAll(".taskdiv"); 
-      divs.forEach(div => div.remove());
-    });
-
-
-
-  // const del=document.getElementById('delete1');
-  // del.onclick=()=>{
-  //   localStorage.clear();
-  //   taskdiv.remove();
-    // const re=document.getElementById("tasklist");
-    // if(re){
-    //   re.remove();
-    // }
-  // } 
+  //to clear
+  document.getElementById("delete1").addEventListener("click", function () {
+    localStorage.clear();
+    const divs = document.querySelectorAll(".task");
+    divs.forEach((div) => div.remove());
+  });
 }
-
-
