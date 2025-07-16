@@ -35,6 +35,14 @@ function addtask() {
   arr.push(newarr);
   localStorage.setItem("tasklist", JSON.stringify(arr));
 
+  // for (let i = 0; i < localStorage.length; i++) {
+  //       const key = localStorage.key(i);
+  //       const value = localStorage.getItem(key);
+  //       const displayElement = document.createElement("p");
+  //       displayElement.textContent = `${key}: ${value}`;
+  //       document.body.appendChild(displayElement);
+  //     }
+
   //
   // const saved=document.getElementById('dele');
   // deletebtn.onclick=()=>{
@@ -55,4 +63,13 @@ function addtask() {
     const divs = document.querySelectorAll(".task");
     divs.forEach((div) => div.remove());
   });
+}
+function onsave() {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    const displayElement = document.createElement("p");
+    displayElement.textContent = `${key}: ${value}`;
+    document.body.appendChild(displayElement);
+  }
 }
