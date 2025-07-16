@@ -1,39 +1,64 @@
-function addTask() {
-  const input = document.getElementById("taskInput");
+function addtask() {
+  const input = document.getElementById("tasks");
   const text = input.value.trim();
   if (text === "") return;
-
-  const taskDiv = document.createElement("div");
-  taskDiv.className = "task";
-
+  const taskdiv = document.createElement("div");
+  taskdiv.className = "task";
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
+  const tasktext = document.createElement("div");
+  tasktext.className = "task-text";
+  tasktext.textContent = text;
 
-  const taskText = document.createElement("div");
-  taskText.className = "task-text";
-  taskText.textContent = text;
-
-  checkbox.onchange = () => {
-    taskDiv.classList.toggle("completed", checkbox.checked);
-  };
-
-  const editBtn = document.createElement("button");
-  editBtn.textContent = "Edit";
-  editBtn.onclick = () => {
-    const newText = prompt("Edit your task", taskText.textContent);
-    if (newText && newText.trim() !== "") {
-      taskText.textContent = newText.trim();
+  const editbtn = document.createElement("button");
+  editbtn.textContent = "Edit";
+  editbtn.onclick = () => {
+    const newtext = prompt("Edit your task");
+    if (newtext != null && newtext.trim() != "") {
+      tasktext.textContent = newtext.trim();
     }
   };
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Delete";
-  deleteBtn.onclick = () => taskDiv.remove();
+  const deletebtn = document.createElement("button");
+  deletebtn.textContent = "Delete";
+  deletebtn.onclick = () => taskdiv.remove();
 
-  taskDiv.appendChild(checkbox);
-  taskDiv.appendChild(taskText);
-  taskDiv.appendChild(editBtn);
-  taskDiv.appendChild(deleteBtn);
-
-  document.getElementById("taskList").appendChild(taskDiv);
+  taskdiv.appendChild(checkbox);
+  taskdiv.appendChild(tasktext);
+  taskdiv.appendChild(editbtn);
+  taskdiv.appendChild(deletebtn);
+  document.getElementById("tasklist").appendChild(taskdiv);
   input.value = "";
+  let arr=JSON.parse(localStorage.getItem("tasklist"))||[];
+  let newarr={
+    Taskname:tasktext.textContent
+  };
+  arr.push(newarr);
+  localStorage.setItem("tasklist",JSON.stringify(arr));
+
+
+
+  const saved=document.getElementById('dele');
+  deletebtn.onclick=()=>{
+  const data = localStorage.getItem('tasklist');
+  const parsedData = data ? JSON.parse(data) : null;
+  const outputDiv = document.getElementById('tasklist');
+    if (parsedData) {
+      outputDiv.innerHTML = `
+        <p><strong>TaskName:</strong> ${parsedData.tasktext}</p>`;
+    } else {
+      outputDiv.textContent = 'No data found in localStorage.';
+    }
+  }
+
+
+  // const del=document.getElementById('delete1');
+  // del.onclick=()=>{
+  //   localStorage.clear();
+  //   const re=document.getElementById("tasklist");
+  //   if(re){
+  //     re.remove();
+  //   }
+  // } 
 }
+
+

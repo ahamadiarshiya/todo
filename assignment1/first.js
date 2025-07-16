@@ -1,6 +1,8 @@
+let input = "";
+let text = "";
 function add() {
-  const input = document.querySelector(".input");
-  const text = input.value.trim();
+  input = document.querySelector(".input");
+  text = input.value.trim();
   if (text === "") return;
   const li = document.createElement("li");
   const span = document.createElement("span");
@@ -23,5 +25,13 @@ function add() {
   li.appendChild(editbtn);
   li.appendChild(deletebtn);
   document.getElementById("taskiscompleted").appendChild(li);
-  input.value = "";
+  localStorage.setItem("Taskname", text);
 }
+function save() {
+  document.getElementById("buttons").innerHTML = localStorage.getItem("Taskname");
+  console.log(username, "username");
+  console.log(text);
+}
+
+
+
