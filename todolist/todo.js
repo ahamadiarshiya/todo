@@ -37,27 +37,37 @@ function addtask() {
 
 
 
-  const saved=document.getElementById('dele');
-  deletebtn.onclick=()=>{
-  const data = localStorage.getItem('tasklist');
-  const parsedData = data ? JSON.parse(data) : null;
-  const outputDiv = document.getElementById('tasklist');
-    if (parsedData) {
-      outputDiv.innerHTML = `
-        <p><strong>TaskName:</strong> ${parsedData.tasktext}</p>`;
-    } else {
-      outputDiv.textContent = 'No data found in localStorage.';
-    }
-  }
+  // const saved=document.getElementById('dele');
+  // deletebtn.onclick=()=>{
+  // const data = localStorage.getItem('tasklist');
+  // const parsedData = data ? JSON.parse(data) : null;
+  // const outputDiv = document.getElementById('tasklist');
+  //   if (parsedData) {
+  //     outputDiv.innerHTML = `
+  //       <p><strong>TaskName:</strong> ${parsedData.tasktext}</p>`;
+  //   } else {
+  //     outputDiv.textContent = 'No data found in localStorage.';
+  //   }
+  // }
+
+
+
+    document.getElementById("delete1").addEventListener("click", function() {
+      localStorage.clear();
+      const divs = document.querySelectorAll(".taskdiv"); 
+      divs.forEach(div => div.remove());
+    });
+
 
 
   // const del=document.getElementById('delete1');
   // del.onclick=()=>{
   //   localStorage.clear();
-  //   const re=document.getElementById("tasklist");
-  //   if(re){
-  //     re.remove();
-  //   }
+  //   taskdiv.remove();
+    // const re=document.getElementById("tasklist");
+    // if(re){
+    //   re.remove();
+    // }
   // } 
 }
 
