@@ -2,10 +2,15 @@ body {
   font-family: Arial, sans-serif;
   background: #232323;
   color: white;
-  display: flex;
-  justify-content: center;
+  display: block;
+  text-align: center;
   padding: 50px;
 }
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 
 .hero {
   background: white;
@@ -51,4 +56,17 @@ body {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+#saved-box {
+  background: #eaeaea;
+  color: black;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+#saved-tasks-container {
+  display: flex;
+  justify-content: center;
+}
 }
