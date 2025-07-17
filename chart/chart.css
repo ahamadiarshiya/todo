@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+.hero{
+    font-size: 20px;
+    background-color: palevioletred;
+    padding: 30px;
+}
+.buttons{
+    gap: 20px;
+    display: flex;
+}
