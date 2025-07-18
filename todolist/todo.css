@@ -34,11 +34,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: lightgray;
   color: black;
   padding: 8px 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+
+#tasklist .task-text::after{
+  content: "";
+  display: block;
+  height: 1px;
+  color:10px solid black;
+  background-color: #ccc;
+  margin-top: 10px;
 }
 
 .task-text {
@@ -50,6 +58,7 @@ body {
   margin-left: 5px;
   cursor: pointer;
 }
+
 #final {
   margin-top: 20px;
   display: flex;

@@ -23,7 +23,6 @@ function addtask() {
   const deletebtn = document.createElement("button");
   deletebtn.textContent = "Delete";
   deletebtn.onclick = () => taskdiv.remove();
-
   
   taskdiv.appendChild(tasktext);
   taskdiv.appendChild(editbtn);

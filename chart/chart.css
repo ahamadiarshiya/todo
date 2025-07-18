@@ -1,13 +1,13 @@
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 90vh;
 }
-.hero{
-    font-size: 20px;
-    background-color: palevioletred;
-    padding: 30px;
+.hero {
+  font-size: 20px;
+  background-color: palevioletred;
+  padding: 30px;
+  
 }
-.buttons{
-    gap: 20px;
-    display: flex;
-}
+
