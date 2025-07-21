@@ -14,16 +14,52 @@ function addtask() {
   const editbtn = document.createElement("button");
   editbtn.textContent = "Edit";
   editbtn.onclick = () => {
-    const newtext = prompt("Edit your task");
-    if (newtext != null && newtext.trim() !== "") {
-      tasktext.textContent = newtext.trim();
-    }
+    editbtn.onclick = () => {
+      const currentText = tasktext.textContent;
+
+      const inputEdit = document.createElement("input");
+      inputEdit.type = "text";
+      inputEdit.value = currentText;
+      inputEdit.className = "edit-input";
+
+      const saveBtn = document.createElement("button");
+      saveBtn.textContent = "✔️";
+
+      const cancelBtn = document.createElement("button");
+      cancelBtn.textContent = "✖️";
+
+      taskdiv.insertBefore(inputEdit, tasktext);
+      taskdiv.insertBefore(saveBtn, tasktext);
+      taskdiv.insertBefore(cancelBtn, tasktext);
+      taskdiv.removeChild(tasktext);
+
+      inputEdit.focus();
+
+      saveBtn.onclick = () => {
+        const newText = inputEdit.value.trim();
+        if (newText !== "") {
+          tasktext.textContent = newText;
+        }
+        cleanupEdit();
+      };
+
+      cancelBtn.onclick = () => {
+        cleanupEdit();
+      };
+
+      function cleanupEdit() {
+        taskdiv.insertBefore(tasktext, inputEdit);
+        taskdiv.removeChild(inputEdit);
+        taskdiv.removeChild(saveBtn);
+        taskdiv.removeChild(cancelBtn);
+      }
+    };
   };
 
   const deletebtn = document.createElement("button");
   deletebtn.textContent = "Delete";
   deletebtn.onclick = () => taskdiv.remove();
-  
+
   taskdiv.appendChild(tasktext);
   taskdiv.appendChild(editbtn);
   taskdiv.appendChild(deletebtn);
