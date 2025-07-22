@@ -15,7 +15,6 @@ function addtask() {
   editbtn.textContent = "Edit";
   editbtn.onclick = () => {
     const currentText = tasktext.textContent;
-
     const inputEdit = document.createElement("input");
     inputEdit.type = "text";
     inputEdit.value = currentText;
@@ -81,19 +80,18 @@ function onsave() {
 function onshowsavedtasks() {
   const taskList = document.getElementById("tasklist");
 
- 
-  const currentTasks = Array.from(taskList.querySelectorAll(".task-text")).map(el => el.textContent);
+  const currentTasks = Array.from(taskList.querySelectorAll(".task-text")).map(
+    (el) => el.textContent
+  );
 
- 
   const savedTasks = JSON.parse(localStorage.getItem("tasklist")) || [];
 
- 
-  const allTaskNames = [...new Set([...currentTasks, ...savedTasks.map(t => t.Taskname)])];
-
+  const allTaskNames = [
+    ...new Set([...currentTasks, ...savedTasks.map((t) => t.Taskname)]),
+  ];
 
   taskList.innerHTML = "";
 
- 
   allTaskNames.forEach((taskText) => {
     const taskdiv = document.createElement("div");
     taskdiv.className = "task";
@@ -160,82 +158,6 @@ function onshowsavedtasks() {
   });
 }
 
-
-
-
-
-
-
-// function onshowsavedtasks() {
-//   const tasklist = document.getElementById("tasklist");
-//   tasklist.innerHTML = "";
-
-//   const tasks = JSON.parse(localStorage.getItem("tasklist") || "[]");
-
-//   tasks.forEach((taskObj) => {
-//     const taskdiv = document.createElement("div");
-//     taskdiv.className = "task";
-
-//     const tasktext = document.createElement("div");
-//     tasktext.className = "task-text";
-//     tasktext.textContent = taskObj.Taskname;
-
-//     const editbtn = document.createElement("button");
-//     editbtn.textContent = "Edit";
-//     editbtn.onclick = () => {
-//       const currentText = tasktext.textContent;
-
-//       const inputEdit = document.createElement("input");
-//       inputEdit.type = "text";
-//       inputEdit.value = currentText;
-//       inputEdit.className = "edit-input";
-
-//       const saveBtn = document.createElement("button");
-//       saveBtn.textContent = "✔️";
-//       saveBtn.style.marginLeft = "5px";
-
-//       const cancelBtn = document.createElement("button");
-//       cancelBtn.textContent = "✖️";
-//       cancelBtn.style.marginLeft = "5px";
-
-//       taskdiv.insertBefore(inputEdit, tasktext);
-//       taskdiv.insertBefore(saveBtn, tasktext);
-//       taskdiv.insertBefore(cancelBtn, tasktext);
-//       taskdiv.removeChild(tasktext);
-
-//       inputEdit.focus();
-
-//       saveBtn.onclick = () => {
-//         const newText = inputEdit.value.trim();
-//         if (newText !== "") {
-//           tasktext.textContent = newText;
-//         }
-//         cleanupEdit();
-//       };
-
-//       cancelBtn.onclick = () => {
-//         cleanupEdit();
-//       };
-
-//       function cleanupEdit() {
-//         taskdiv.insertBefore(tasktext, inputEdit);
-//         taskdiv.removeChild(inputEdit);
-//         taskdiv.removeChild(saveBtn);
-//         taskdiv.removeChild(cancelBtn);
-//       }
-//     };
-
-//     const deletebtn = document.createElement("button");
-//     deletebtn.textContent = "Delete";
-//     deletebtn.onclick = () => taskdiv.remove();
-
-//     taskdiv.appendChild(tasktext);
-//     taskdiv.appendChild(editbtn);
-//     taskdiv.appendChild(deletebtn);
-
-//     tasklist.appendChild(taskdiv);
-//   });
-// }
 function onclear() {
   document.getElementById("tasklist").innerHTML = "";
   localStorage.clear();
