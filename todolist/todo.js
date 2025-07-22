@@ -14,46 +14,44 @@ function addtask() {
   const editbtn = document.createElement("button");
   editbtn.textContent = "Edit";
   editbtn.onclick = () => {
-    editbtn.onclick = () => {
-      const currentText = tasktext.textContent;
+    const currentText = tasktext.textContent;
 
-      const inputEdit = document.createElement("input");
-      inputEdit.type = "text";
-      inputEdit.value = currentText;
-      inputEdit.className = "edit-input";
+    const inputEdit = document.createElement("input");
+    inputEdit.type = "text";
+    inputEdit.value = currentText;
+    inputEdit.className = "edit-input";
 
-      const saveBtn = document.createElement("button");
-      saveBtn.textContent = "✔️";
+    const saveBtn = document.createElement("button");
+    saveBtn.textContent = "✔️";
 
-      const cancelBtn = document.createElement("button");
-      cancelBtn.textContent = "✖️";
+    const cancelBtn = document.createElement("button");
+    cancelBtn.textContent = "✖️";
 
-      taskdiv.insertBefore(inputEdit, tasktext);
-      taskdiv.insertBefore(saveBtn, tasktext);
-      taskdiv.insertBefore(cancelBtn, tasktext);
-      taskdiv.removeChild(tasktext);
+    taskdiv.insertBefore(inputEdit, tasktext);
+    taskdiv.insertBefore(saveBtn, tasktext);
+    taskdiv.insertBefore(cancelBtn, tasktext);
+    taskdiv.removeChild(tasktext);
 
-      inputEdit.focus();
+    inputEdit.focus();
 
-      saveBtn.onclick = () => {
-        const newText = inputEdit.value.trim();
-        if (newText !== "") {
-          tasktext.textContent = newText;
-        }
-        cleanupEdit();
-      };
-
-      cancelBtn.onclick = () => {
-        cleanupEdit();
-      };
-
-      function cleanupEdit() {
-        taskdiv.insertBefore(tasktext, inputEdit);
-        taskdiv.removeChild(inputEdit);
-        taskdiv.removeChild(saveBtn);
-        taskdiv.removeChild(cancelBtn);
+    saveBtn.onclick = () => {
+      const newText = inputEdit.value.trim();
+      if (newText !== "") {
+        tasktext.textContent = newText;
       }
+      cleanupEdit();
     };
+
+    cancelBtn.onclick = () => {
+      cleanupEdit();
+    };
+
+    function cleanupEdit() {
+      taskdiv.insertBefore(tasktext, inputEdit);
+      taskdiv.removeChild(inputEdit);
+      taskdiv.removeChild(saveBtn);
+      taskdiv.removeChild(cancelBtn);
+    }
   };
 
   const deletebtn = document.createElement("button");
@@ -81,38 +79,164 @@ function onsave() {
 }
 
 function onshowsavedtasks() {
+  const taskList = document.getElementById("tasklist");
+
+ 
+  const currentTasks = Array.from(taskList.querySelectorAll(".task-text")).map(el => el.textContent);
+
+ 
   const savedTasks = JSON.parse(localStorage.getItem("tasklist")) || [];
 
-  const container = document.getElementById("saved-tasks-container");
-  container.innerHTML = "";
+ 
+  const allTaskNames = [...new Set([...currentTasks, ...savedTasks.map(t => t.Taskname)])];
 
-  const box = document.createElement("div");
-  box.style.marginTop = "20px";
-  box.style.padding = "15px";
-  box.style.background = "#ffffff";
-  box.style.border = "2px solid black";
-  box.style.borderRadius = "8px";
-  box.style.color = "black";
-  box.style.width = "350px";
 
-  const heading = document.createElement("h3");
-  heading.textContent = "Saved Tasks:";
-  box.appendChild(heading);
+  taskList.innerHTML = "";
 
-  savedTasks.forEach((taskObj, index) => {
-    const para = document.createElement("p");
-    para.textContent = `Task ${index + 1}: ${taskObj.Taskname}`;
-    box.appendChild(para);
+ 
+  allTaskNames.forEach((taskText) => {
+    const taskdiv = document.createElement("div");
+    taskdiv.className = "task";
+
+    const tasktext = document.createElement("div");
+    tasktext.className = "task-text";
+    tasktext.textContent = taskText;
+
+    const editbtn = document.createElement("button");
+    editbtn.textContent = "Edit";
+
+    editbtn.onclick = () => {
+      const currentText = tasktext.textContent;
+
+      const inputEdit = document.createElement("input");
+      inputEdit.type = "text";
+      inputEdit.value = currentText;
+      inputEdit.className = "edit-input";
+
+      const saveBtn = document.createElement("button");
+      saveBtn.textContent = "✔️";
+      saveBtn.style.marginLeft = "5px";
+
+      const cancelBtn = document.createElement("button");
+      cancelBtn.textContent = "✖️";
+      cancelBtn.style.marginLeft = "5px";
+
+      taskdiv.insertBefore(inputEdit, tasktext);
+      taskdiv.insertBefore(saveBtn, tasktext);
+      taskdiv.insertBefore(cancelBtn, tasktext);
+      taskdiv.removeChild(tasktext);
+
+      inputEdit.focus();
+
+      saveBtn.onclick = () => {
+        const newText = inputEdit.value.trim();
+        if (newText !== "") {
+          tasktext.textContent = newText;
+        }
+        cleanupEdit();
+      };
+
+      cancelBtn.onclick = () => {
+        cleanupEdit();
+      };
+
+      function cleanupEdit() {
+        taskdiv.insertBefore(tasktext, inputEdit);
+        taskdiv.removeChild(inputEdit);
+        taskdiv.removeChild(saveBtn);
+        taskdiv.removeChild(cancelBtn);
+      }
+    };
+
+    const deletebtn = document.createElement("button");
+    deletebtn.textContent = "Delete";
+    deletebtn.onclick = () => taskdiv.remove();
+
+    taskdiv.appendChild(tasktext);
+    taskdiv.appendChild(editbtn);
+    taskdiv.appendChild(deletebtn);
+
+    taskList.appendChild(taskdiv);
   });
-
-  container.appendChild(box);
 }
 
-document.getElementById("delete1").addEventListener("click", function () {
+
+
+
+
+
+
+// function onshowsavedtasks() {
+//   const tasklist = document.getElementById("tasklist");
+//   tasklist.innerHTML = "";
+
+//   const tasks = JSON.parse(localStorage.getItem("tasklist") || "[]");
+
+//   tasks.forEach((taskObj) => {
+//     const taskdiv = document.createElement("div");
+//     taskdiv.className = "task";
+
+//     const tasktext = document.createElement("div");
+//     tasktext.className = "task-text";
+//     tasktext.textContent = taskObj.Taskname;
+
+//     const editbtn = document.createElement("button");
+//     editbtn.textContent = "Edit";
+//     editbtn.onclick = () => {
+//       const currentText = tasktext.textContent;
+
+//       const inputEdit = document.createElement("input");
+//       inputEdit.type = "text";
+//       inputEdit.value = currentText;
+//       inputEdit.className = "edit-input";
+
+//       const saveBtn = document.createElement("button");
+//       saveBtn.textContent = "✔️";
+//       saveBtn.style.marginLeft = "5px";
+
+//       const cancelBtn = document.createElement("button");
+//       cancelBtn.textContent = "✖️";
+//       cancelBtn.style.marginLeft = "5px";
+
+//       taskdiv.insertBefore(inputEdit, tasktext);
+//       taskdiv.insertBefore(saveBtn, tasktext);
+//       taskdiv.insertBefore(cancelBtn, tasktext);
+//       taskdiv.removeChild(tasktext);
+
+//       inputEdit.focus();
+
+//       saveBtn.onclick = () => {
+//         const newText = inputEdit.value.trim();
+//         if (newText !== "") {
+//           tasktext.textContent = newText;
+//         }
+//         cleanupEdit();
+//       };
+
+//       cancelBtn.onclick = () => {
+//         cleanupEdit();
+//       };
+
+//       function cleanupEdit() {
+//         taskdiv.insertBefore(tasktext, inputEdit);
+//         taskdiv.removeChild(inputEdit);
+//         taskdiv.removeChild(saveBtn);
+//         taskdiv.removeChild(cancelBtn);
+//       }
+//     };
+
+//     const deletebtn = document.createElement("button");
+//     deletebtn.textContent = "Delete";
+//     deletebtn.onclick = () => taskdiv.remove();
+
+//     taskdiv.appendChild(tasktext);
+//     taskdiv.appendChild(editbtn);
+//     taskdiv.appendChild(deletebtn);
+
+//     tasklist.appendChild(taskdiv);
+//   });
+// }
+function onclear() {
+  document.getElementById("tasklist").innerHTML = "";
   localStorage.clear();
-  arr.splice(0, arr.length);
-  console.log(arr);
-  document.querySelectorAll(".task").forEach((div) => div.remove());
-  const display = document.getElementById("saved-tasks-container");
-  display.innerHTML = "";
-});
+}
