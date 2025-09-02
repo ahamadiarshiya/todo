@@ -1,4 +1,4 @@
-let arr = [];
+// let arr = [];
 var tasktext2;
 function addtask() {
   const input = document.getElementById("tasks");
@@ -38,14 +38,14 @@ function addtask() {
       if (newText !== "") {
         tasktext.textContent = newText;
       }
-      cleanupEdit();
+      cleanitup();
     };
 
     cancelBtn.onclick = () => {
-      cleanupEdit();
+      cleanitup();
     };
 
-    function cleanupEdit() {
+    function cleanitup() {
       taskdiv.insertBefore(tasktext, inputEdit);
       taskdiv.removeChild(inputEdit);
       taskdiv.removeChild(saveBtn);
