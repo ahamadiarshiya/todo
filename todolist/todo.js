@@ -1,4 +1,3 @@
-// let arr = [];
 var tasktext2;
 function addtask() {
   const input = document.getElementById("tasks");
@@ -153,7 +152,6 @@ function onshowsavedtasks() {
     taskdiv.appendChild(tasktext);
     taskdiv.appendChild(editbtn);
     taskdiv.appendChild(deletebtn);
-
     taskList.appendChild(taskdiv);
   });
 }
