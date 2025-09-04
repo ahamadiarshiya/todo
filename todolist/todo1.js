@@ -32,23 +32,34 @@ function onSave() {
 function onShowSavedTasks() {
     const taskList = document.getElementById("tasklist");
 
+   
+    const currentTasks = Array.from(taskList.querySelectorAll(".task-text")).map(
+        (el) => el.textContent.trim()
+    );
+
     const savedTasks = JSON.parse(localStorage.getItem("tasklist")) || [];
+    const savedTaskNames = savedTasks.map((t) => t.taskName.trim());
+
+  
+    const allUniqueTaskNames = [...new Set([...currentTasks, ...savedTaskNames])];
+
 
     taskList.innerHTML = "";
 
-    savedTasks.forEach((task) => {
+
+    allUniqueTaskNames.forEach((taskTextValue) => {
         const taskDiv = document.createElement("div");
         taskDiv.className = "task";
 
         const taskText = document.createElement("div");
         taskText.className = "task-text";
-        taskText.textContent = task.taskName;
+        taskText.textContent = taskTextValue;
 
         editTask(taskDiv, taskText);
-
         taskList.appendChild(taskDiv);
     });
 }
+
 
 function editTask(taskDiv, taskText) {
     const editButton = document.createElement("button");
@@ -96,7 +107,6 @@ function editTask(taskDiv, taskText) {
             taskDiv.removeChild(cancelButton);
         }
     };
-
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.onclick = () => {
