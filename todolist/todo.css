@@ -59,6 +59,12 @@ body {
   margin-left: 5px;
   cursor: pointer;
 }
+.no-tasks-message {
+    font-style: italic;
+    color: #888;
+    padding: 10px;
+    text-align: center;
+}
 
 #final {
   margin-top: 20px;
