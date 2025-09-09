@@ -65,14 +65,12 @@ body {
     padding: 10px;
     text-align: center;
 }
-
 #final {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 20px;
 }
-
 #saved-box {
   background: #eaeaea;
   color: black;

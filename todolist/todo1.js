@@ -2,15 +2,23 @@ function addTask() {
     const input = document.getElementById("tasks");
     const text = input.value.trim();
     if (text === "") return;
+
+    const noTasksMsg = document.querySelector(".no-tasks-message");
+    if (noTasksMsg) noTasksMsg.remove();
+
     const taskDiv = document.createElement("div");
     taskDiv.className = "task";
     const taskText = document.createElement("div");
     taskText.className = "task-text";
     taskText.textContent = text;
+
     editTask(taskDiv, taskText);
     document.getElementById("tasklist").appendChild(taskDiv);
     input.value = "";
+
+    updateLocalStorageFromUI(); 
 }
+
 function updateLocalStorageFromUI() {
     const taskElements = document.querySelectorAll("#tasklist .task-text");
     const tasksToSave = Array.from(taskElements).map((el) => ({
